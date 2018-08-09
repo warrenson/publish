@@ -1,0 +1,41 @@
+#!/bin/bash
+TEMPLATE_DIR="${HOME}/.templates"
+
+function __usage {
+    cat << 'EOF'
+
+uasge:
+    
+    template <type> <name>
+
+Available Templates:
+
+EOF
+    tree $TEMPLATE_DIR
+}
+
+function __error {
+    echo "ERROR: Template not found!" >&2
+    echo >&2
+    __usage
+    exit 1
+}
+
+# Test for inputs
+
+if [ $# -ne 2 ]
+then
+    echo "Invalid input!"
+    __usage
+    exit 1
+fi
+
+
+# Get template(s)
+TEMPLATE="`ls ${TEMPLATE_DIR}/${1}/${2} | grep -v '.bak$'`"
+if [ -z $TEMPLATE ] ; then __error ; fi
+
+# Cat template(s) to STDOUT
+echo "Requesting template(s):" >&2
+echo "$TEMPLATE ... " >&2
+cat $TEMPLATE && echo "[  OK  ]" >&2
