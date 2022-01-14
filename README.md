@@ -1,2 +1,2 @@
-# scripts
-Collection of various scripts which I deem helpful
+# publish
+Collection of various templates, scripts, and dependencies for publishing.
