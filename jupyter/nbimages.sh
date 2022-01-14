@@ -4,7 +4,7 @@ NOTEBOOK=$1
 NAME=`basename $NOTEBOOK .ipynb`
 
 NBTMPDIR=`mktemp -d`
-TARGET_DIR=${2:-"figures"}
+TARGET_DIR=${2:-"${NAME}_figures"}
 mkdir -p $TARGET_DIR
 
 jupyter nbconvert --to latex --output-dir=$NBTMPDIR --output='figure' "$NOTEBOOK"
